@@ -1,16 +1,21 @@
 package pl.prz.aip.web;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.prz.aip.model.Pracownik;
+import pl.prz.aip.repository.PracownikRepository;
 
 @RestController
 public class PracownicyController {
 
-	public List<Pracownik> getAll() {
-		return null;
-		// TODO
+	@Autowired
+	private PracownikRepository pracownikRepository;
+
+	@RequestMapping(value = "/pracownicy", method = RequestMethod.GET)
+	public Iterable<Pracownik> getAll() {
+		return pracownikRepository.findAll();
 	}
 }
