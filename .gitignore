@@ -3,3 +3,5 @@
 .metadata/
 .classpath
 *.prefs
+*.log
+/db/
