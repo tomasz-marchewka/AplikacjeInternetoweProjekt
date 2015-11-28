@@ -5,3 +5,5 @@
 *.prefs
 *.log
 /db/
+node_modules
+/.tern-project
