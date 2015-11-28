@@ -5,5 +5,4 @@
 *.prefs
 *.log
 /db/
-/src/web/node-modules/
-/src/web/packge.json
+node_modules
