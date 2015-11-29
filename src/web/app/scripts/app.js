@@ -24,10 +24,9 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/pracownicy', {
+        templateUrl: 'views/pracownicy.html',
+        controller: 'PracownicyCtrl'
       })
       .otherwise({
         redirectTo: '/'

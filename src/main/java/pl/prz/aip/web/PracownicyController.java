@@ -14,8 +14,10 @@ public class PracownicyController {
 	@Autowired
 	private PracownikRepository pracownikRepository;
 
+	// @CrossOrigin(origins = "http://localhost:9000")
 	@RequestMapping(value = "/pracownicy", method = RequestMethod.GET)
 	public Iterable<Pracownik> getAll() {
 		return pracownikRepository.findAll();
 	}
+
 }
