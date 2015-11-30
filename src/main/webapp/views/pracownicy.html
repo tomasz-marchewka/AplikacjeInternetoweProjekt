@@ -1,3 +1,14 @@
-<div class="row marketing">
-  <p>{{pracownicy}}</p>
-</div>
+<table class="table">
+	<thead>
+	<tr>
+		<th>Imie</th>
+		<th>Nazwisko</th>
+	</tr>
+	</thead>
+	<tbody>
+    <tr ng-repeat="pracownik in pracownicy">
+        <td>{{pracownik.imie}}</td>
+        <td>{{pracownik.nazwisko}}</td>
+    </tr>
+    </tbody>
+</table>

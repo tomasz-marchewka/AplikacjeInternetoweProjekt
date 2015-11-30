@@ -7,8 +7,10 @@ angular.module('webApp')
 		  method: 'GET',
 		  url: 'http://localhost:8080/pracownicy'
 		}).then(function successCallback(response) {
-		    $scope.pracownicy = response;
+		    $scope.pracownicy = response.data;
+		    
 		  }, function errorCallback(response) {
 		    alert('ups');
 		  });
+	  $scope.test = "asd";
   });
