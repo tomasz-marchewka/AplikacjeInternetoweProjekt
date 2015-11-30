@@ -2,12 +2,12 @@
 
 
 angular.module('webApp')
-  .controller('PracownicyCtrl', function ($scope, $http) {
+  .controller('DzialyCtrl', function ($scope, $http) {
 	  $http({
 		  method: 'GET',
-		  url: 'http://localhost:8080/pracownicy'
+		  url: 'http://localhost:8080/dzialy'
 		}).then(function successCallback(response) {
-		    $scope.pracownicy = response.data;
+		    $scope.dzialy = response.data;
 		    
 		  }, function errorCallback(response) {
 		    alert('ups');
