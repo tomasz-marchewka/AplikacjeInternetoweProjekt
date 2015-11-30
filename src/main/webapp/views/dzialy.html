@@ -1,14 +1,28 @@
 <table class="table">
 	<thead>
-	<tr>
-		<th>Nazwa</th>
-		<th>Opis</th>
-	</tr>
+		<tr>
+			<th>Nazwa</th>
+			<th>Opis</th>
+		</tr>
 	</thead>
 	<tbody>
-    <tr ng-repeat="dzial in dzialy">
-        <td>{{dzial.nazwa}}</td>
-        <td>{{dzial.opis}}</td>
-    </tr>
-    </tbody>
+		<tr ng-repeat="dzial in dzialy">
+			<td>{{dzial.nazwa}}</td>
+			<td>{{dzial.opis}}</td>
+		</tr>
+
+	</tbody>
+
+	<form ng-controller="DzialyCtrl" ng-submit="insertDzial()">
+
+		<legend>Dodaj dział: </legend>
+
+		<input type="text" id="nazwa" name="nazwa" ng-model="dzial.nazwa"
+			placeholder="Nazwa"> 
+		<input type="text" id="opis" name="opis"
+			ng-model="dzial.opis" placeholder="Opis działu">
+
+		<button class="btn btn-primary" ng-click="insertDzial()">Dodaj</button>
+
+	</form>
 </table>

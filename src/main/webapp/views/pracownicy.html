@@ -1,14 +1,29 @@
 <table class="table">
 	<thead>
-	<tr>
-		<th>Imie</th>
-		<th>Nazwisko</th>
-	</tr>
+		<tr>
+			<th>Imie</th>
+			<th>Nazwisko</th>
+		</tr>
 	</thead>
 	<tbody>
-    <tr ng-repeat="pracownik in pracownicy">
-        <td>{{pracownik.imie}}</td>
-        <td>{{pracownik.nazwisko}}</td>
-    </tr>
-    </tbody>
+		<tr ng-repeat="pracownik in pracownicy">
+			<td>{{pracownik.imie}}</td>
+			<td>{{pracownik.nazwisko}}</td>
+		</tr>
+	</tbody>
+
+	<form ng-controller="PracownicyCtrl" ng-submit="insertPracownik()">
+
+		<legend>Dodaj pracownika: </legend>
+
+		<input type="text" id="imie" name="imie" ng-model="pracownik.imie"
+			placeholder="Imie"> 
+		<input type="text" id="nazwisko"
+			name="nazwisko" ng-model="pracownik.nazwisko" placeholder="Nazwisko">
+		<input type="text" id="pesel" name="pesel" ng-model="pracownik.pesel"
+			placeholder="PESEL">
+
+		<button class="btn btn-primary" ng-click="insertPracownik()">Dodaj</button>
+
+	</form>
 </table>
