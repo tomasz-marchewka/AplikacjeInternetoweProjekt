@@ -23,6 +23,17 @@ angular.module('webApp')
 		    alert('ups');
 		  });
 	  
+	  //pobieranie projektow
+	  $http({
+		  method: 'GET',
+		  url: '/projekty'
+		}).then(function successCallback(response) {
+		    $scope.projekty = response.data;
+		    
+		  }, function errorCallback(response) {
+		    alert('ups');
+		  });
+	  
 	  $scope.pracownik = {};
 		$scope.insertPracownik = function() {
 			$http({

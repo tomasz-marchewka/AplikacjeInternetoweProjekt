@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.prz.aip.model.Pracownik;
 import pl.prz.aip.repository.DzialRepository;
 import pl.prz.aip.repository.PracownikRepository;
+import pl.prz.aip.repository.ProjektRepository;
 
 @RestController
 public class PracownicyController {
@@ -20,6 +21,9 @@ public class PracownicyController {
 	
 	@Autowired
 	private DzialRepository dzialRepository;
+	
+	@Autowired
+	private ProjektRepository projektRepository;
 
 	@RequestMapping(value = "/pracownicy", method = RequestMethod.GET)
 	public Iterable<Pracownik> getAll() {
@@ -30,6 +34,9 @@ public class PracownicyController {
 	public ResponseEntity<Pracownik> add(@RequestBody Pracownik input) {
 		if(input.getDzialId() != null) {
 			input.setDzial(dzialRepository.findOne(input.getDzialId()));
+		}
+		if(input.getProjektId() != null) {
+			input.setProjekt(projektRepository.findOne(input.getProjektId()));
 		}
 		pracownikRepository.save(input);
 		return new ResponseEntity<>(HttpStatus.OK);

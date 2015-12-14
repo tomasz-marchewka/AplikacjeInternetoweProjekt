@@ -4,6 +4,7 @@
 			<th>Imie</th>
 			<th>Nazwisko</th>
 			<th>Dział</th>
+			<th>Projekt</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -11,25 +12,38 @@
 			<td>{{pracownik.imie}}</td>
 			<td>{{pracownik.nazwisko}}</td>
 			<td>{{pracownik.dzial.nazwa}}</td>
+			<td>{{pracownik.projekt.tytul}}</td>
 		</tr>
 	</tbody>
 
 	<form ng-controller="PracownicyCtrl" ng-submit="insertPracownik()">
 
 		<legend>Dodaj pracownika: </legend>
-
-		<input type="text" id="imie" name="imie" ng-model="pracownik.imie"
-			placeholder="Imie"> 
-		<input type="text" id="nazwisko"
-			name="nazwisko" ng-model="pracownik.nazwisko" placeholder="Nazwisko">
-		<input type="text" id="pesel" name="pesel" ng-model="pracownik.pesel"
-			placeholder="PESEL">
-			
-    <select name="dzial" id="dzial" ng-model="pracownik.dzialId">
-      <option ng-repeat="dzial in dzialy" value="{{dzial.id}}">{{dzial.nazwa}}</option>
-    </select>
-
-		<button class="btn btn-primary" ng-click="insertPracownik()">Dodaj</button>
+		<div class="form-group">
+    		<label for="imie">Imię</label>
+    		<input type="text" class="form-control" id="imie" placeholder="Imię" ng-model="pracownik.imie">
+  		</div>
+  		<div class="form-group">
+    		<label for="Nazwisko">Nazwisko</label>
+    		<input type="text" class="form-control" id="nazwisko" placeholder="Nazwisko" ng-model="pracownik.nazwisko">
+  		</div>
+  		<div class="form-group">
+    		<label for="pesel">PESEL</label>
+    		<input type="text" class="form-control" id="pesel" placeholder="PESEL" ng-model="pracownik.pesel">
+  		</div>
+		<div class="form-group">
+    		<label for="dzial">Dział</label>
+    		<select name="dzial" id="dzial" ng-model="pracownik.dzialId" class="form-control">
+      			<option ng-repeat="dzial in dzialy" value="{{dzial.id}}">{{dzial.nazwa}}</option>
+    		</select>
+  		</div>
+    	<div class="form-group">
+    		<label for="projekt">Projekt</label>
+    		<select name="projekt" id="projekt" ng-model="pracownik.projektId" class="form-control">
+     			<option ng-repeat="projekt in projekty" value="{{projekt.id}}">{{projekt.tytul}}</option>
+    		</select>
+  		</div>
+   		<button class="btn btn-primary" ng-click="insertPracownik()">Dodaj</button>
 
 	</form>
 </table>
