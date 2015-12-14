@@ -13,6 +13,16 @@ angular.module('webApp')
 		    alert('ups');
 		  });
 	  
+	  $http({
+		  method: 'GET',
+		  url: '/dzialy'
+		}).then(function successCallback(response) {
+		    $scope.dzialy = response.data;
+		    
+		  }, function errorCallback(response) {
+		    alert('ups');
+		  });
+	  
 	  $scope.pracownik = {};
 		$scope.insertPracownik = function() {
 			$http({
