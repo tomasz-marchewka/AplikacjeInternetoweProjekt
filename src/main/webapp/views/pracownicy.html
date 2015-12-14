@@ -3,12 +3,14 @@
 		<tr>
 			<th>Imie</th>
 			<th>Nazwisko</th>
+			<th>Dział</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="pracownik in pracownicy">
 			<td>{{pracownik.imie}}</td>
 			<td>{{pracownik.nazwisko}}</td>
+			<td>{{pracownik.dzial.nazwa}}</td>
 		</tr>
 	</tbody>
 
@@ -22,6 +24,10 @@
 			name="nazwisko" ng-model="pracownik.nazwisko" placeholder="Nazwisko">
 		<input type="text" id="pesel" name="pesel" ng-model="pracownik.pesel"
 			placeholder="PESEL">
+			
+    <select name="dzial" id="dzial" ng-model="pracownik.dzialId">
+      <option ng-repeat="dzial in dzialy" value="{{dzial.id}}">{{dzial.nazwa}}</option>
+    </select>
 
 		<button class="btn btn-primary" ng-click="insertPracownik()">Dodaj</button>
 

@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "PRACOWNIK")
@@ -28,6 +31,9 @@ public class Pracownik extends BaseModel<Integer> {
 	private Dzial dzial;
 	private Stanowisko stanowisko;
 	private Set<Ewidencja> ewidencje;
+	
+	@JsonProperty(value = "dzialId")
+	private Integer dzialId;
 	
 	@Column(name = "IMIE")
 	public String getImie() {
@@ -74,6 +80,19 @@ public class Pracownik extends BaseModel<Integer> {
 	public void setEwidencje(Set<Ewidencja> ewidencje) {
 		this.ewidencje = ewidencje;
 	}
+	
+	@Transient
+	public Integer getDzialId() {
+		if(dzialId == null && dzial != null) {
+			return dzial.getId();
+		}
+		return dzialId;
+	}
+	public void setDzialId(Integer dzialId) {
+		this.dzialId = dzialId;
+	}
+	
+	
 	
 	
 	
