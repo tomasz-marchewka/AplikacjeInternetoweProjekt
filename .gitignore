@@ -4,6 +4,7 @@
 .classpath
 *.prefs
 *.log
+/db/
 node_modules
 /.tern-project
 bower_components
