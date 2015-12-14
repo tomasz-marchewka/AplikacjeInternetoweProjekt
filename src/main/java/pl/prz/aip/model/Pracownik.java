@@ -24,6 +24,7 @@ public class Pracownik extends BaseModel<Integer> {
 	public static final String DZIAL = "dzial";
 	public static final String STANOWISKO = "stanowisko";
 	public static final String EWIDENCJE = "ewidencje";
+	public static final String PROJEKT = "projekt";
 	
 	private String imie;
 	private String nazwisko;
@@ -31,9 +32,10 @@ public class Pracownik extends BaseModel<Integer> {
 	private Dzial dzial;
 	private Stanowisko stanowisko;
 	private Set<Ewidencja> ewidencje;
+	private Projekt projekt;
 	
-	@JsonProperty(value = "dzialId")
 	private Integer dzialId;
+	private Integer projektId;
 	
 	@Column(name = "IMIE")
 	public String getImie() {
@@ -65,6 +67,7 @@ public class Pracownik extends BaseModel<Integer> {
 	public void setDzial(Dzial dzial) {
 		this.dzial = dzial;
 	}
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "STANOWISKO")
 	public Stanowisko getStanowisko() {
@@ -82,15 +85,44 @@ public class Pracownik extends BaseModel<Integer> {
 	}
 	
 	@Transient
+	@JsonProperty(value = "dzialId")
 	public Integer getDzialId() {
 		if(dzialId == null && dzial != null) {
 			return dzial.getId();
 		}
 		return dzialId;
 	}
+	
 	public void setDzialId(Integer dzialId) {
 		this.dzialId = dzialId;
 	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "PROJEKT")
+	public Projekt getProjekt() {
+		return projekt;
+	}
+	
+	public void setProjekt(Projekt projekt) {
+		this.projekt = projekt;
+	}
+	
+	@Transient
+	@JsonProperty(value = "projektId")
+	public Integer getProjektId() {
+		if(projektId == null && projekt != null) {
+			return projekt.getId();
+		}
+		return projektId;
+	}
+	
+	public void setProjektId(Integer projektId) {
+		this.projektId = projektId;
+	}
+	
+	
+	
+	
 	
 	
 	
