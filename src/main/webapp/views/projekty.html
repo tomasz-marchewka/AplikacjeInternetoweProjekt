@@ -3,26 +3,48 @@
 		<tr>
 			<th>Tytuł</th>
 			<th>Opis</th>
+			<th>Data rozpoczęcia</th>
+			<th>Data zakończenia</th>
+			<th>Dział</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="projekt in projekty">
 			<td>{{projekt.tytul}}</td>
 			<td>{{projekt.opis}}</td>
+			<td>{{projekt.dataRozpoczecia}}</td>
+			<td>{{projekt.dataZakonczenia}}</td>
+			<td>{{projekt.dzial.nazwa}}</td>
+			<td><button class="btn btn-default"
+					ng-click="deleteProjekt(projekt.id)">X</button></td>
 		</tr>
 
 	</tbody>
 
 	<form ng-controller="ProjektyCtrl" ng-submit="insertProjekt()">
-
 		<legend>Dodaj projekt: </legend>
-
-		<input type="text" id="tytul" name="tytul" ng-model="projekt.tytul"
-			placeholder="Tytuł"> 
-		<input type="text" id="opis" name="opis"
-			ng-model="projekt.opis" placeholder="Opis projektu">
-
+		<div>
+			<label>Tytuł: </label> <input type="text" id="tytul" name="tytul"
+				required ng-model="projekt.tytul" placeholder="Tytuł">
+		</div>
+		<div>
+			<label>Opis: </label> <input type="text" id="opis" name="opis"
+				ng-model="projekt.opis" placeholder="Opis projektu">
+		</div>
+		<div>
+			<label>Data rozpoczęcia: </label> <input type="date"
+				id="dataRozpoczecia" ng-model="projekt.dataRozpoczecia" />
+		</div>
+		<div>
+			<label>Data zakończenia: </label> <input type="date"
+				id="dataZakonczenia" ng-model="projekt.dataZakonczenia" />
+		</div>
+		<div>
+			<label>Dział: </label> <select name="dzial" id="dzial"
+				ng-model="projekt.dzialId">
+				<option ng-repeat="dzial in dzialy" value="{{dzial.id}}">{{dzial.nazwa}}</option>
+			</select>
+		</div>
 		<button class="btn btn-primary" ng-click="insertProjekt()">Dodaj</button>
-
 	</form>
 </table>
