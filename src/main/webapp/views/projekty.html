@@ -1,0 +1,28 @@
+<table class="table">
+	<thead>
+		<tr>
+			<th>Tytuł</th>
+			<th>Opis</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="projekt in projekty">
+			<td>{{projekt.tytul}}</td>
+			<td>{{projekt.opis}}</td>
+		</tr>
+
+	</tbody>
+
+	<form ng-controller="ProjektyCtrl" ng-submit="insertProjekt()">
+
+		<legend>Dodaj projekt: </legend>
+
+		<input type="text" id="tytul" name="tytul" ng-model="projekt.tytul"
+			placeholder="Tytuł"> 
+		<input type="text" id="opis" name="opis"
+			ng-model="projekt.opis" placeholder="Opis projektu">
+
+		<button class="btn btn-primary" ng-click="insertProjekt()">Dodaj</button>
+
+	</form>
+</table>
