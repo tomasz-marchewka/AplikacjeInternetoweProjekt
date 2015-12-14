@@ -13,6 +13,9 @@
 			<td>{{pracownik.nazwisko}}</td>
 			<td>{{pracownik.dzial.nazwa}}</td>
 			<td>{{pracownik.projekt.tytul}}</td>
+			<td><button type="button" class="btn btn-default" aria-label="Left Align" ng-click="deletePracownik(pracownik.id)">
+  				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				</button>
 		</tr>
 	</tbody>
 

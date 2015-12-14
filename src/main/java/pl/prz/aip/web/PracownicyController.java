@@ -3,6 +3,7 @@ package pl.prz.aip.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,6 +40,12 @@ public class PracownicyController {
 			input.setProjekt(projektRepository.findOne(input.getProjektId()));
 		}
 		pracownikRepository.save(input);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/pracownicy/{pracownikId}", method = RequestMethod.DELETE)
+	public ResponseEntity<Pracownik> delete(@PathVariable Integer pracownikId) {
+		pracownikRepository.delete(pracownikId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 

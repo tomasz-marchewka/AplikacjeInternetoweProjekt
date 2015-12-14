@@ -47,4 +47,16 @@ angular.module('webApp')
 				alert('ups');
 			});
 		};
+		
+		
+		$scope.deletePracownik = function(id) {
+			$http({
+				method : 'DELETE',
+				url : '/pracownicy/' + id.toString(),
+			}).then(function successCallback(response) {
+				$route.reload();
+			}, function errorCallback(response) {
+				alert('ups');
+			});
+		};
   });
