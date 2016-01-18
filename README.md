@@ -9,4 +9,5 @@ Projekt aplikacji służącej do zarządzania zasobami ludzkimi oraz prostym zar
 3. Wykonać kroki z pliku docs/Konfiguracja Angulara.docx.
 4. Pobrać zależności poleceniem "mvn package".
 5. Uruchomić aplikację za pomocą polecenia "mvn spring-boot:run".
+6. Włączyć przeglądarkę pod adresem localhost:8080.
 ```
