@@ -5,9 +5,12 @@ Projekt aplikacji służącej do zarządzania zasobami ludzkimi oraz prostym zar
 ##Uruchomienie:
 ```
 1. Zainstalować mavena.
-2. Sklonować repozytorium.
-3. Wykonać kroki z pliku docs/Konfiguracja Angulara.docx.
-4. Pobrać zależności poleceniem "mvn package".
-5. Uruchomić aplikację za pomocą polecenia "mvn spring-boot:run".
-6. Włączyć przeglądarkę pod adresem localhost:8080.
+2. Zainstalować node.js.
+3. Zainstalować git basha.
+4. Zainstalować bowera poleceniem: "npm install -g bower".
+5. Sklonować repozytorium.
+6. Przejsć w konsoli do katalogu src/main/webapp
+7. Pobrać dodatkowe zależnoci poleceniem bower install
+8. Uruchomić aplikację za pomocą polecenia "mvn spring-boot:run".
+9. Włączyć przeglądarkę pod adresem localhost:8080.
 ```
