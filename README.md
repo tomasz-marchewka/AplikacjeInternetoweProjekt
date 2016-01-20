@@ -11,6 +11,7 @@ Projekt aplikacji służącej do zarządzania zasobami ludzkimi oraz prostym zar
 5. Sklonować repozytorium.
 6. Przejsć w konsoli do katalogu src/main/webapp
 7. Pobrać dodatkowe zależnoci poleceniem bower install
-8. Uruchomić aplikację za pomocą polecenia "mvn spring-boot:run".
-9. Włączyć przeglądarkę pod adresem localhost:8080.
+8. Wrócić do gównego katalogu projektu.
+9. Uruchomić aplikację za pomocą polecenia "mvn spring-boot:run".
+10. Włączyć przeglądarkę pod adresem localhost:8080.
 ```
