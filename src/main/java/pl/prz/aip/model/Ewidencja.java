@@ -1,53 +1,28 @@
 package pl.prz.aip.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "EWIDENCJA")
-public class Ewidencja extends BaseModel<Integer> {
-	
-	public static final String DATA_WEJSCIA = "dataWejscia";
-	public static final String DATA_WYJSCIA = "dataWyjscia";
-	public static final String PRACOWNIK = "pracownik";
-	
-	private Date dataWejscia;
-	private Date dataWyjscia;
-	private Pracownik pracownik;
-	
-	@Temporal(TemporalType.DATE)
+public class Ewidencja extends BaseModel {
+
 	@Column(name = "DATA_WEJSCIA")
-	public Date getDataWejscia() {
-		return dataWejscia;
-	}
-	public void setDataWejscia(Date dataWejscia) {
-		this.dataWejscia = dataWejscia;
-	}
-	
-	@Temporal(TemporalType.DATE)
+	private LocalDate dataWejscia;
+
 	@Column(name = "DATA_WYJSCIA")
-	public Date getDataWyjscia() {
-		return dataWyjscia;
-	}
-	public void setDataWyjscia(Date dataWyjscia) {
-		this.dataWyjscia = dataWyjscia;
-	}
+	private LocalDate dataWyjscia;
+
 	@ManyToOne
 	@JoinColumn(name = "PRACOWNIK")
-	public Pracownik getPracownik() {
-		return pracownik;
-	}
-	public void setPracownik(Pracownik pracownik) {
-		this.pracownik = pracownik;
-	}
-	
-	
-
+	private Pracownik pracownik;
 }

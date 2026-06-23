@@ -5,36 +5,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Transient;
 import jakarta.persistence.Version;
+import lombok.Getter;
+import lombok.Setter;
 
+/**
+ * Wspólna baza dla encji: klucz główny generowany przez bazę oraz pole
+ * wersji wykorzystywane przez mechanizm optymistycznego blokowania.
+ */
+@Getter
+@Setter
 @MappedSuperclass
-public class BaseModel<ID> {
-
-	public static final String ID = "id";
-
-	private ID id;
-
-	private int version;
+public abstract class BaseModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
-	public ID getId() {
-		return id;
-	}
-
-	public void setId(ID id) {
-		this.id = id;
-	}
+	private Integer id;
 
 	@Version
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
+	@Column(name = "VERSION")
+	private int version;
 }

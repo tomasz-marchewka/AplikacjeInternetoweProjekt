@@ -1,6 +1,6 @@
 package pl.prz.aip.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -10,100 +10,31 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import jakarta.persistence.Transient;
+import lombok.Getter;
+import lombok.Setter;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "PROJEKT")
-public class Projekt extends BaseModel<Integer> {
+public class Projekt extends BaseModel {
 
-	public static final String DATA_ZAKNCZENIA = "dataZakonczenia";
-	public static final String DATA_ROZPOCZECIA = "dataRozpoczecia";
-	public static final String OPIS = "opis";
-	public static final String TYTUL = "tytul";
-	public static final String DZIAL = "dzial";
-	public static final String PUNKTY_KLUCZOWE = "punktyKluczowe";
-
-	private Date dataZakonczenia;
-	private Date dataRozpoczecia;
-	private String opis;
+	@Column(name = "TYTUL", nullable = false)
 	private String tytul;
-	private Dzial dzial;
-	private Set<PunktKluczowy> punktyKluczowe;
-
-	private Integer dzialId;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_ZAKONCZENIA")
-	public Date getDataZakonczenia() {
-		return dataZakonczenia;
-	}
-
-	public void setDataZakonczenia(Date dataZakonczenia) {
-		this.dataZakonczenia = dataZakonczenia;
-	}
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "DATA_ROZPOCZECIA")
-	public Date getDataRozpoczecia() {
-		return dataRozpoczecia;
-	}
-
-	public void setDataRozpoczecia(Date dataRozpoczecia) {
-		this.dataRozpoczecia = dataRozpoczecia;
-	}
 
 	@Column(name = "OPIS")
-	public String getOpis() {
-		return opis;
-	}
+	private String opis;
 
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
+	@Column(name = "DATA_ROZPOCZECIA")
+	private LocalDate dataRozpoczecia;
 
-	@Column(name = "TYTUL")
-	public String getTytul() {
-		return tytul;
-	}
+	@Column(name = "DATA_ZAKONCZENIA")
+	private LocalDate dataZakonczenia;
 
-	public void setTytul(String tytul) {
-		this.tytul = tytul;
-	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = PunktKluczowy.PROJEKT)
-	public Set<PunktKluczowy> getPunktyKluczowe() {
-		return punktyKluczowe;
-	}
-
-	public void setPunktyKluczowe(Set<PunktKluczowy> punktyKluczowe) {
-		this.punktyKluczowe = punktyKluczowe;
-	}
-
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "DZIAL")
-	public Dzial getDzial() {
-		return dzial;
-	}
+	private Dzial dzial;
 
-	public void setDzial(Dzial dzial) {
-		this.dzial = dzial;
-	}
-
-	@Transient
-	@JsonProperty(value = "dzialId")
-	public Integer getDzialId() {
-		if (dzialId == null && dzial != null) {
-			return dzial.getId();
-		}
-		return dzialId;
-	}
-
-	public void setDzialId(Integer dzialId) {
-		this.dzialId = dzialId;
-	}
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "projekt")
+	private Set<PunktKluczowy> punktyKluczowe;
 }
