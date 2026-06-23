@@ -29,19 +29,19 @@ public class ProjektyController {
 
 	@RequestMapping(value = "/projekty/{projektId}", method = RequestMethod.GET)
 	public Projekt getById(@PathVariable Integer projektId) {
-		return projektRepository.findOne(projektId);
+		return projektRepository.findById(projektId).orElse(null);
 	}
 
 	@RequestMapping(value = "/projekty/{projektId}", method = RequestMethod.DELETE)
 	public ResponseEntity<Projekt> deleteElement(@PathVariable Integer projektId) {
-		projektRepository.delete(projektId);
+		projektRepository.deleteById(projektId);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/projekty", method = RequestMethod.POST)
 	public ResponseEntity<Projekt> add(@RequestBody Projekt input) {
 		if (input.getDzialId() != null) {
-			input.setDzial(dzialRepository.findOne(input.getDzialId()));
+			input.setDzial(dzialRepository.findById(input.getDzialId()).orElse(null));
 		}
 		projektRepository.save(input);
 		return new ResponseEntity<>(HttpStatus.OK);

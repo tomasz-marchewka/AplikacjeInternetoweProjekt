@@ -2,6 +2,9 @@
 Projekt aplikacji służącej do zarządzania zasobami ludzkimi oraz prostym zarządzeniem projektami.
 
 
+## Wymagania
+Projekt został zaktualizowany do Spring Boot 3.5 oraz Javy 21 (wymagany JDK 21+).
+
 ##Uruchomienie:
 ```
 1. Zainstalować mavena.

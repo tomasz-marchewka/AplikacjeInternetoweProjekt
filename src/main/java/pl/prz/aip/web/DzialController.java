@@ -25,7 +25,7 @@ public class DzialController {
 
 	@RequestMapping(value = "/dzialy/{dzialId}", method = RequestMethod.GET)
 	public Dzial getById(@PathVariable Integer dzialId) {
-		return dzialRepository.findOne(dzialId);
+		return dzialRepository.findById(dzialId).orElse(null);
 	}
 
 	@RequestMapping(value = "/dzialy", method = RequestMethod.POST)
