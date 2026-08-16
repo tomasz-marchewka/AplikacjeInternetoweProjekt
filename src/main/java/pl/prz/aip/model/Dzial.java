@@ -1,35 +1,20 @@
 package pl.prz.aip.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "DZIAL")
-public class Dzial extends BaseModel<Integer> {
+public class Dzial extends BaseModel {
 
-	public static final String OPIS = "opis";
-	public static final String NAZWA = "nazwa";
-
-	private String opis;
+	@Column(name = "NAZWA", nullable = false)
 	private String nazwa;
 
 	@Column(name = "OPIS")
-	public String getOpis() {
-		return opis;
-	}
-
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
-
-	@Column(name = "NAZWA")
-	public String getNazwa() {
-		return nazwa;
-	}
-
-	public void setNazwa(String nazwa) {
-		this.nazwa = nazwa;
-	}
-
+	private String opis;
 }

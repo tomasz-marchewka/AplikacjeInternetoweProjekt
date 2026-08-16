@@ -1,37 +1,43 @@
 package pl.prz.aip.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import pl.prz.aip.model.Dzial;
-import pl.prz.aip.repository.DzialRepository;
+import jakarta.validation.Valid;
+import pl.prz.aip.service.DzialService;
+import pl.prz.aip.web.dto.DzialRequest;
+import pl.prz.aip.web.dto.DzialResponse;
 
 @RestController
+@RequestMapping("/dzialy")
 public class DzialController {
 
-	@Autowired
-	private DzialRepository dzialRepository;
+	private final DzialService dzialService;
 
-	@RequestMapping(value = "/dzialy", method = RequestMethod.GET)
-	public Iterable<Dzial> getAll() {
-		return dzialRepository.findAll();
+	public DzialController(DzialService dzialService) {
+		this.dzialService = dzialService;
 	}
 
-	@RequestMapping(value = "/dzialy/{dzialId}", method = RequestMethod.GET)
-	public Dzial getById(@PathVariable Integer dzialId) {
-		return dzialRepository.findOne(dzialId);
+	@GetMapping
+	public List<DzialResponse> getAll() {
+		return dzialService.findAll();
 	}
 
-	@RequestMapping(value = "/dzialy", method = RequestMethod.POST)
-	public ResponseEntity<Dzial> add(@RequestBody Dzial input) {
-		dzialRepository.save(input);
-		return new ResponseEntity<>(HttpStatus.OK);
+	@GetMapping("/{id}")
+	public DzialResponse getById(@PathVariable Integer id) {
+		return dzialService.findById(id);
 	}
 
+	@PostMapping
+	public ResponseEntity<DzialResponse> add(@Valid @RequestBody DzialRequest request) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(dzialService.create(request));
+	}
 }

@@ -1,77 +1,38 @@
 package pl.prz.aip.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "PUNKT_KLUCZOWY")
-public class PunktKluczowy extends BaseModel<Integer> {
-	
-	public static final String PRIORYTET = "priorytet";
-	public static final String DATA_ZAKONCZENIA = "dataZakonczenia";
-	public static final String DATA_UTWORZENIA = "dataUtworzenia";
-	public static final String OPIS = "opis";
-	public static final String NAZWA = "nazwa";
-	public static final String PROJEKT = "projekt";
+public class PunktKluczowy extends BaseModel {
 
-	private Integer priorytet;
-	private Date dataZakonczenia;
-	private Date dataUtworzenia;
-	private String opis;
+	@Column(name = "NAZWA", nullable = false)
 	private String nazwa;
-	private Projekt projekt;
-	
-	@Column(name = "PRIORYTET")
-	public Integer getPriorytet() {
-		return priorytet;
-	}
-	public void setPriorytet(Integer priorytet) {
-		this.priorytet = priorytet;
-	}
-	@Column(name = "DATA_ZAKONCZENIA")
-	public Date getDataZakonczenia() {
-		return dataZakonczenia;
-	}
-	public void setDataZakonczenia(Date dataZakonczenia) {
-		this.dataZakonczenia = dataZakonczenia;
-	}
-	@Column(name = "DATA_UTWORZENIA")
-	public Date getDataUtworzenia() {
-		return dataUtworzenia;
-	}
-	public void setDataUtworzenia(Date dataUtworzenia) {
-		this.dataUtworzenia = dataUtworzenia;
-	}
+
 	@Column(name = "OPIS")
-	public String getOpis() {
-		return opis;
-	}
-	public void setOpis(String opis) {
-		this.opis = opis;
-	}
-	@Column(name = "NAZWA")
-	public String getNazwa() {
-		return nazwa;
-	}
-	public void setNazwa(String nazwa) {
-		this.nazwa = nazwa;
-	}
+	private String opis;
+
+	@Column(name = "DATA_UTWORZENIA")
+	private LocalDate dataUtworzenia;
+
+	@Column(name = "DATA_ZAKONCZENIA")
+	private LocalDate dataZakonczenia;
+
+	@Column(name = "PRIORYTET")
+	private Integer priorytet;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "PROJEKT")
-	public Projekt getProjekt() {
-		return projekt;
-	}
-	public void setProjekt(Projekt projekt) {
-		this.projekt = projekt;
-	}
-	
-	
-	
-	
+	private Projekt projekt;
 }
